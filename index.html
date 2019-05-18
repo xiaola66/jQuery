@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport"  content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no">
+		<script src="jquery.js"></script>
+		<title>注册</title>
+		<style>
+			html,div,body {
+				margin: 0;
+				padding: 0;
+			}
+			.content {
+				width: 100%;
+				text-align: center;
+			}
+			.top a {
+				text-decoration: none;
+			}
+			.body-text {
+				font-size:30px ;
+				margin: 10px 0;
+			}
+			.body-tips span {
+				color: #42bd56;
+				font-size: 15px;
+			}
+			.input {
+				margin: 25px 0;
+			}
+			.username,.phone,.password {
+			    border-top-left-radius: 3px;
+			    border-top-right-radius: 3px;
+			    border: 1px solid #d7d7d7;
+			    border-radius: 0;
+			    box-shadow: none;
+			    padding: 10px 40px 10px 10px;
+			    color: #494949;
+			    font-size: 15px;
+			    line-height: 24px;
+			    width: 340px;
+			    box-sizing: border-box;
+			    caret-color: #42bd56;
+			}
+			.index {
+			    height: 44px;
+    			width: 340px;
+			    color: #fff;
+   				font-size: 17px;
+        		background-color: rgba(66,189,86,.5);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top"><a href="./enter.html">X</a></div>
+		<div class="content">			
+			<div class="body-text">注册豆瓣</div>
+			<div class="body-tips">登录注册表示同意<span class="blank"> 豆瓣使用协议、隐私政策</span></div>
+			<div class="input">
+				<input class="username" type="text" placeholder="用户名" value=""/>
+				<input class="phone" type="text" placeholder="手机号/邮箱" value=""/>
+				<input class="password" type="text" placeholder="密码" value=""/>
+			</div>
+			<button class="index">注册</button>
+		</div>
+		<script>
+			
+			var Ind = $ (".index");
+			Ind.click(function(){
+				var User = $(".username").val();
+				var Tel = $(".phone").val();
+				var Pw = $(".password").val();
+				if(User!='' && Tel!='' && Pw!=''){
+					alert("注册成功")					
+				}else{
+					alert("注册失败");
+				};
+				$.ajax({
+					url:"http://www.myshop.com/index/user/reg",
+					type:'POST',
+					dataType:'json',
+					data:{
+						'name':User,
+						'phone':Tel,
+						'password':Pw,
+					},
+					success:function(res){
+						console.log(res)
+					}
+				});
+				
+				
+			});
+			
+				
+			
+		</script>
+	</body>
+</html>

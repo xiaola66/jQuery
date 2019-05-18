@@ -1,0 +1,172 @@
+1、首页：
+url接口地址：shop.com/index.php/index/goods/index
+请求方式： get
+请求参数（入参）： 无
+结果：（出参、相应）
+goods 商品列表
+    img ：string : 必须 : 图片
+    tag : 标签
+banner: 图片列表
+
+{
+    'error' : 0,
+    'msg' : 'ok',
+    'data' : {
+        'goods' : [
+                    {
+                        "id" : 1,
+                        "img":"",
+                        "title" : "",
+                        "desc" : "",
+                        "price" : "",
+                        "tag" ： [
+                            {
+                                'name' : "新品上市",
+                                'color' : "",
+                            }
+                        ], 
+                    }
+                ],
+        "banner" : [
+                {
+                    "img" : "",
+                    "url" : ""
+                },
+            ]
+    }
+}
+
+
+
+2、商品详情接口：
+url接口地址：http://shop.com/index.php/index/goods/detail
+请求方式： get
+请求参数（入参）： id
+    id ：string : 必须 : 商品id
+结果：（出参、相应）
+info 商品详情
+{
+    'error' : 0,
+    'msg' : 'ok',
+    'data' : {
+        'info' : {
+            "id" : 1,
+            "img":"",
+            "title" : "",
+            "desc" : "",
+            "price" : "",
+            "tag" ： [
+                {
+                    'name' : "新品上市",
+                    'color' : "",
+                }
+            ], 
+            "content" : "",//富文本编辑器
+        }
+    }
+}
+
+
+
+3 登录
+url接口地址：http://shop.com/index.php/index/user/doLogin
+请求方式： post
+请求参数（入参）： id
+    phone ：string : 必须 : 电话号
+    password ：string : 必须 : 密码
+结果：（出参、响应）
+{
+    'error' : 0,
+    'msg' : 'ok',
+    'data' : {
+        'token' : "",
+        'info' : {
+            "id" : 1,
+            "name":"",
+            "phone" : "",
+        }
+    }
+}
+
+
+4 注册
+url接口地址：http://shop.com/index.php/index/user/reg
+请求方式： post
+请求参数（入参）： id
+    username ：string : 必须 : 用户名
+    phone ：string : 必须 : 电话号
+    password ：string : 必须 : 密码
+结果：（出参、响应）
+{
+    'error' : 0,
+    'msg' : '注册成功',
+    'data' : {
+    }
+}
+
+
+5 获取用户信息 
+url接口地址：http://shop.com/index.php/index/user/info
+请求方式： get
+请求参数（入参）： id
+    token ：string : 必须 : 用户token
+结果：（出参、响应）
+info 用户基本信息
+{
+    'error' : 0,
+    'msg' : 'ok',
+    'data' : {
+        'info' : {
+            "id" : 1,
+            "name":"",
+            "phone" : "",
+        }
+    }
+}
+
+
+
+
+6 加入购物车
+url接口地址：http://shop.com/index/goods/cart
+请求方式： post
+请求参数（入参）： 
+    goods_id      :int    :必须     :商品的id
+    token   :string :必须     :用户的token
+    count   :int    :必须     :商品数量
+    color   :string :可有可无   :商品属性，颜色
+    size    :string :可有可无   :商品属性，尺寸
+
+结果：（出参、响应）
+{
+    'error' : 0,
+    'msg' : '已加入购物车',
+    'data' : {
+    }
+}
+
+
+7 购物车
+url接口地址：http://shop.com/index/goods/cartinfo
+请求方式： post
+请求参数（入参）： 
+    token     :string :必须     :用户的token
+结果：（出参、响应）
+{
+    'error' : 0,
+    'msg' : '',
+    'data' : {
+    	'cart':[{
+    		'name'  : '',
+    		'color' : '',
+    		'price' : '',
+    		'count' :   ,
+    	},
+    	{
+    		'name'  : '',
+    		'color' : '',
+    		'price' : '',
+    		'count' :   ,
+    	},
+    ],
+}

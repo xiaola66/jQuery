@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">       
+	<meta name="viewport"  content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no">
+<!-- 	<meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+	<script src="jquery.js"></script>
+	<title>Douban</title>
+	<style>
+	html,body,div {
+		margin: 0;
+		padding: 0;
+	}
+	html {
+		font-size: 62.5%;
+		}
+    .swiper-wrapper img {
+        width: 38rem;
+        height: 19rem;
+    }
+    .swiper-pagination {
+    	right: auto !important;
+    	left:10rem !important;
+    }
+    .user-bar {
+	background-color: #fff;
+
+    }
+    .user-bar-cart,.user-bar-people {
+    line-height: 45px;
+    font-size: 15px;
+    color: #ababac;
+    padding: 0rem 6.5rem;
+    }
+	.user-bar-line {
+	border-right: 2px solid #f3f2f2;
+	}
+	.kong {
+		height: 20px;
+		background-color: #F3F2F2;; 
+	}
+	.list-header {
+	    font-size: 18px;
+	    padding: 15px;
+	}
+	.list-content ul li {
+		display: inline-block;
+		list-style: none;
+		margin-left: -25px;
+		padding-right:  37px;
+		padding-bottom: 20px;
+
+	}
+	.list-content ul {
+		height: 1000px;
+		display: inline-block;
+		width: 100%; 
+	}
+	.cover-wrapper img {
+		width: 165px;
+		height: 160px;
+	}
+	.card-info {
+
+	}
+	.card-title {
+		font-size: 15px;
+		font-weight: 300;
+		line-height: 0px;
+		color: #3e3a39;
+	}
+	.card-desc {
+		color: #ababac;
+		font-size: 13px;
+	}
+	.card-bottom {
+		
+	}
+	.card-promote{
+		font-size: 15px;
+    line-height: 1.4;
+    color: #dd1944;
+	}
+	.card-tag {
+		border: 1px solid #44883e;
+		font-size: 12px;
+		padding: 0 6px;
+    margin-left: 17px;
+	}
+	.list-content {
+		margin-left:-32px;
+	}
+	.list-item {
+		display: inline-block;
+		padding:0 7px 20px 7px;
+	}
+	a {
+		text-decoration: none;
+	}
+  </style>
+</head>
+<body>
+
+	<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	      
+	    </div>
+	    <!-- 如果需要分页器 -->
+	    <div class="swiper-pagination"></div>
+	</div>
+	<div class="user-bar">
+		<a href="./enter.html" class="user-bar-cart">购物车</a>
+		<i class="user-bar-line"></i>
+		<a class="user-bar-people">我的豆品</a>
+	</div>
+	<div class="kong"></div>
+	<div class="list">
+		<div class="list-header">新品首发</div>
+			<ul class="list-content">
+				
+			</ul>
+	</div>
+	<script>        
+    $(function(){
+    	$.ajax({
+        url: 'http://www.myshop.com/index/goods/index',
+        type: 'GET',
+        dataType: 'json',
+        success: function(res){
+        	//轮播图
+	        var str = ""
+	        for(var i=0; i<res.data.banner.length; i++){
+	            str += '<div class="swiper-slide"><img src="'+res.data.banner[i].img+'"></div>'
+	        }
+	        $(".swiper-wrapper").append(str);
+	        //商品列表
+	        var list = ""
+	        for(var j=0; j<res.data.goods.length; j++){
+	        		list += '<li class="list-item"><a href="./detail.html?id='+res.data.goods[j].id+'"><div class="list-card"><div class="cover-wrapper"><img src="'+res.data.goods[j].img+'"></div><div class="card-info"><p class="card-title">'+res.data.goods[j].title+'</p><div class="card-desc">'+res.data.goods[j].desc+'</div><div class="card-bottom"><span class="card-promote">'+res.data.goods[j].price+'</span><span class="card-tag" style="color: rgb(70, 166, 143); border-color: rgb(70, 166, 143);">'+res.data.goods[j].tag[0].name+'</span></div></div></div></a></li>'
+	        }
+	        $(".list-content").append(list);
+
+	        //隐藏新品上市
+	        for (var j=0;j<res.data.goods.length;j++){
+	        	if (res.data.goods[j].tag[0].name == '') {
+	        		$(".card-tag:eq("+j+")").hide();
+	        	}
+	        }		     
+
+	        var mySwiper = new Swiper ('.swiper-container', {
+		        direction: 'horizontal', // 垂直切换选项
+		        loop: true, // 循环模式选项
+		        autoplay:true,
+		        observer:true,			        
+		        // 如果需要分页器
+		        pagination: {
+		          el: '.swiper-pagination',
+		        },		        
+	      	})
+        }
+      });
+    })     
+  </script>
+</body>
+</html>
+

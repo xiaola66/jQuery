@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"> 
+	<meta name="viewport"  content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no">
+	<script src="jquery.js"></script>
+	<title>sijin</title>
+	<style type="text/css">
+		html,body,div,ul,li {
+			margin: 0;
+			padding: 0;
+		}
+		.info-img img{
+			width: 100%;
+			height: 100%;
+		}
+		.info-title {
+			line-height: 20px;
+			font-size: 25px;
+			text-align: center;
+		}
+		.info-price {
+			line-height: 5px;
+			text-align: center;
+	    	color: #dd1944;
+		}
+		.info-desc {
+		    color: #ababac;
+		    font-size: 12px;
+		    line-height: 5px;
+		    text-align: center;	
+		}
+		.info .content {
+			margin-top:100px; 
+		}
+		.info-btn {
+			text-align: center;
+			
+		}
+		.info-btn button {
+			width: 280px;
+			background: #dd1944;
+			border-radius: 5px;
+			font-size: 15px;
+			height: 45px;
+			color: #fff;
+			margin-top: 12px; 
+		}
+		.content img {
+			width: 100%;
+		}
+		.info-content {
+			margin-top:50px;
+			width: 100%; 
+		}
+		.modal-main {
+			position: fixed;
+			top:362px;
+			width: 100%;
+			height:450px;
+    	background: #fff;
+    	display: none;
+		}
+		.modal-close {
+			margin-left: 350px; 
+			font-size: 30px;
+		}
+		.modal-container {
+			margin-top:-20px;
+			height: 380px;
+			border-bottom: 1px solid #ababac;
+			padding:0 20px;			
+		}
+		.product-hd {
+			position: relative;
+		}
+		.product-hd img {
+			position: absolute;
+			top:15px;
+			left: -5px;
+			width: 100px;
+			height: 100px;
+		}
+		.product-hd .img2 {
+			display: none;
+		}
+		.product-hd .img3 {
+			display: none;
+		}
+		.spu-title {
+			position: absolute;
+			top:15px;
+			left: 110px;
+		}
+		.spu-price {
+			position: absolute;
+			top: 45px;
+			left: 110px;
+			color: #dd1944;
+		}
+		.spu-props-tips {
+			position: absolute;
+			top: 85px;
+			left: 110px;
+			font-size: 12px;
+			color: #5c5c5c;
+		}
+		.spu-props-tips .span1 {
+			display: none;
+		}
+		.spu-props-tips .span2 {
+			display: none;
+		}
+		.spu-props-tips .span3 {
+			display: none;
+		}
+		.product-bd {
+			position: absolute;
+			top:145px;
+		}
+		.hd {		  
+			font-size: 14px;
+			padding-bottom: 15px;
+		}
+		.bd .item1,.item2,.item3{
+			border: 1px solid #f7f7f7;
+	    border-radius: 2px;
+	    background: #f7f7f7;
+	    padding: 5px 15px;
+	    font-size: 14px;
+		}
+		.bd .item1:hover,.item2:hover,.item3:hover {
+			border: 1px solid #0aa082;
+	    background: #fff;
+	    color: #0aa082;
+		}
+		.amount {
+			margin: 30px 0 10px;
+			font-size: 14px;
+		}
+		.addcut button {
+			width: 30px;
+			height: 35px;
+		}
+		.addcut span {
+			border: 1px solid #e4e4e4;
+			padding: 5px 15px;
+		}
+		.bar-cart {
+			width: 140px;
+			height: 50px;
+			border-right: 1px solid #ababac;
+			float: left;
+		}
+		.buttons {
+			height: 140px;
+		}
+		.cart-button {
+			height: 140px;
+			display: inline-block;
+			margin: 14px 15px;
+			color: #bdbdbd;
+		}
+		.checkout-button {
+			float: right;
+			height: 140px;
+			padding: 14px 30px;
+		    background: #e4e4e4;
+    		color: #bdbdbd;
+		}
+		.img1 {
+			background-size: cover;
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+<body>
+	<div class="info">
+	
+	</div>
+	<!-- 点立即购买button弹出的列表 -->
+	<div class="modal-main">
+		<div class="modal-close">x</div>
+		<div class="modal-container">
+			<div class="product-hd">
+				<div class="img1">
+				<!--<img class="img1" src="./p2049830.jpg">
+				<img class="img2" src="./p2049831.jpg">
+				<img class="img3" src="./p2049832.jpg">-->
+				</div>
+				
+				<div class="spu-title"></div>
+				<div class="spu-price"></div>	
+				<div class="spu-props-tips">
+					<span class="span0">请选择“颜色”</span>
+					<span class="span1">已选“马蒂斯款”</span>
+					<span class="span2">已选“蒙德里安款”</span>
+					<span class="span3">已选“德劳内款”</span>
+				</div>
+			</div>
+			<div class="product-bd">
+				<div class="props-items">
+					<div class="hd">颜色：</div>
+					<div class="bd">
+						<a class="item1">马蒂斯款</a>
+						<a class="item2">蒙德里安款</a>
+						<a class="item3">德劳内款</a>
+					</div>
+					<div class="amount">数量</div>
+					<div class="addcut">
+						<button class="cut">-</button><span class="num">1</span><button class="add">+</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footbar">
+			<div class="bar-cart"></div>
+			<div class="buttons">
+				<div class="cart-button">加入购物车</div>
+				<div class="checkout-button">立即购买</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+//		localStorage.setItem("token","222222")
+	var idvalue = window.location.search.split("=")[1];
+	$(function(){
+		$.ajax({
+			url:'http://www.myshop.com/index/goods/detail',
+			type:'GET',
+			dataType:'json',
+			data:{
+				id:idvalue
+			},
+			success:function(res){
+		        var str = '<div class="info-img"><img src="'+res.data.info.img+'"></div><p class="info-title">'+res.data.info.title+'</p><p class="info-price">'+res.data.info.price+'</p><p class="info-desc">'+res.data.info.desc+'</p><div class="info-btn"><button>立即购买</button></div><div class="content">'+res.data.info.content+'</div>'
+		        $(".info").append(str);
+			        var Btnshow = $(".info-btn");
+					var Close = $(".modal-close");
+					var Modal = $ (".modal-main");
+					Btnshow.click(function(){
+						Modal.show();
+					});
+					Close.click(function(){
+						Modal.hide();
+					});  
+				$(".spu-title").text(res.data.info.title);
+				$(".spu-price").text(res.data.info.price);			
+				$(".img1").css("background-image","url('"+res.data.info.attr[0].pic+"')");
+				console.log(res)
+//				atr = "";
+//				for(i=0;i<res.data.attr.length;i++){
+//					atr += '<img class="img1" src="'+res.data.attr[i].pic+'">'
+//				}
+//				console.log(atr);
+//				$(".pic").append(atr);
+			}
+
+		});
+	})
+//点击立即购买出来菜单
+	
+//
+	var Onclick1 = $(".item1")
+	var Onclick2 = $(".item2")
+	var Onclick3 = $(".item3")
+	var Showimg1 = $(".product-hd .img1")
+	var Showimg2 = $(".product-hd .img2")
+	var Showimg3 = $(".product-hd .img3")
+	var Moren = $(".spu-props-tips .span0")
+	var Pick1 = $(".spu-props-tips .span1")
+	var Pick2 = $(".spu-props-tips .span2")
+	var Pick3 = $(".spu-props-tips .span3")
+	Onclick1.click(function(){
+		Showimg1.show();
+		Showimg2.hide();
+		Showimg3.hide();
+		Pick1.show();
+		Moren.hide();
+		Pick2.hide();
+		Pick3.hide();
+		$(".cart-button").css({"color": "#505050"});
+		$(".checkout-button").css({"background": "#dd1944","color": "#fff"});
+//		if($(this).hasClass(".bd .item1:hover,.item2:hover,.item3:hover")){
+//			$(this).addClass(".bd .item1,.item2,.item3")
+//		}
+	});
+	Onclick2.click(function(){
+		Showimg2.show();
+		Showimg1.hide();
+		Showimg3.hide();
+		Pick2.show();
+		Moren.hide();
+		Pick1.hide();
+		Pick3.hide();
+	});
+	Onclick3.click(function(){
+		Showimg3.show();
+		Showimg2.hide();
+		Showimg1.hide();
+		Pick3.show();
+		Moren.hide();
+		Pick1.hide();
+		Pick2.hide();
+	});
+	
+	
+	   //加的效果
+	$(".add").click(function(){
+	    var n=$(this).prev().html();
+	    var num=parseInt(n)+1;
+	    if(num==0){ return;}
+	    $(this).prev().html(num);
+	});
+	//减的效果
+	$(".cut").click(function(){
+	    var n=$(this).next().html();
+	    var num=parseInt(n)-1;
+	    if(num==0){ return}
+	    $(this).next().html(num);
+	});
+	
+	$("cart-button")
+	</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no">
+		<script src="jquery.js"></script>
+		<title>购物车</title>
+		<style>
+			html,
+			div,
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.logo a {
+				text-decoration: none;
+				color: #44883e;
+				font-size: 20px;
+				margin: 10px 20px;
+				display: inline-block;
+				font-weight: 600;
+			}
+			
+			.check {
+				margin: 20px 15px;
+				font-size: 15px;
+				color: #ABABAC;
+			}
+			
+			.check input {
+				width: 15px;
+				height: 15px;
+			}
+			
+			.zi {
+				margin-left: 15px;
+			}
+			
+			.cart {
+				border-top: 1px solid #ABABAC;
+				position: relative;
+			}
+			
+			.kong1 {
+				position: absolute;
+				top: 50px;
+				left: 18px;
+			}
+			
+			.kong1 input {
+				width: 15px;
+				height: 15px;
+			}
+			
+			img {
+				position: absolute;
+				top: 20px;
+				left: 50px;
+				width: 70px;
+				height: 70px;
+			}
+			
+			.name {
+				position: absolute;
+				top: 20px;
+				left: 125px;
+				font-size: 15px;
+				color: #ABABAC;
+			}
+			
+			.color {
+				position: absolute;
+				top: 40px;
+				left: 125px;
+				font-size: 13px;
+				color: #D7D7D7;
+			}
+			
+			.num {
+				position: absolute;
+				top: 64px;
+				left: 125px;
+				border: 1px solid #ABABAC;
+				/*padding: 12px 45px;*/
+			}
+			
+			.cut {
+				padding: 0 10px;
+				color: #ababac;
+				background-color: #f3f2f2;
+			}
+			
+			.count {
+				padding: 0 13px;
+			}
+			
+			.add {
+				padding: 0 8px;
+				color: #ababac;
+				background-color: #f3f2f2;
+			}
+			
+			.del {
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				color: #ABABAC;
+				font-size: 13px;
+			}
+			
+			.price {
+				position: absolute;
+				top: 70px;
+				right: 20px;
+				color: #dd1944;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="logo">
+				<a href="./main.html">豆瓣 | 豆品</a>
+			</div>
+			<div class="check"><input type="checkbox"><span class="zi">豆瓣豆品</span></div>
+		</div>
+		<div class="cart">
+			<div class="kong1"><input type="checkbox"></div>
+			<!--<div><img src=""/></div>
+			<div class="name">111111</div>
+			<div class="color">22222</div>
+			<div class="price">33333</div>
+			<div class="num"><span class="cut">-</span><span class="count">1</span><span class="add">+</span></div>-->
+			<div class="del">删除</div>
+		</div>
+		<script>
+			var token = localStorage.getItem("token"); //获取token
+			$(function() {
+				$.ajax({
+					url: 'http://www.myshop.com/index/goods/cartInfo',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						token: token
+					},
+					success: function(res) {
+						console.log(res);
+						var str = '<div><img src=""/></div><div class="name">'+res.data.cart.name +'</div><div class="color">'+res.data.cart.color+'</div><div class="price">'+res.data.cart.price+'</div><div class="num"><span class="cut">-</span><span class="count">'+res.data.cart.count+'</span><span class="add">+</span></div>'
+						$(".cart").append(str);
+						console.log(str);
+					}
+				});
+			})
+			
+			//加的效果
+			$(".add").click(function() {
+				var n = $(this).prev().html();
+				var num = parseInt(n) + 1;
+				if(num == 0) {
+					return;
+				}
+				$(this).prev().html(num);
+			});
+			//减的效果
+			$(".cut").click(function() {
+				var n = $(this).next().html();
+				var num = parseInt(n) - 1;
+				if(num == 0) {
+					return
+				}
+				$(this).next().html(num);
+			});
+		</script>
+	</body>
+
+</html>

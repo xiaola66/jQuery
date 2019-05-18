@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport"  content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no">
+		<script src="jquery.js"></script>
+		<title>登录</title>
+		<style>
+			html,div,body {
+				margin: 0;
+				padding: 0;
+			}
+			.content {
+				width: 100%;
+				text-align: center;
+			}
+			.body-text {
+				font-size:30px ;
+				margin: 10px 0;
+			}
+			.body-tips span {
+				color: #42bd56;
+				font-size: 15px;
+			}
+			.input {
+				margin: 25px 0;
+			}
+			.phone,.password {
+			    border-top-left-radius: 3px;
+			    border-top-right-radius: 3px;
+			    border: 1px solid #d7d7d7;
+			    border-radius: 0;
+			    box-shadow: none;
+			    padding: 10px 40px 10px 10px;
+			    color: #494949;
+			    font-size: 15px;
+			    line-height: 24px;
+			    width: 340px;
+			    box-sizing: border-box;
+			    caret-color: #42bd56;
+			}
+			.enter {
+			    height: 44px;
+    			width: 340px;
+			    color: #fff;
+   				font-size: 17px;
+        		background-color: rgba(66,189,86,.5);
+        		margin-bottom: 10px;
+			}
+			.index a {
+				text-decoration: none;
+				font-size: 18px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top">X</div>
+		<div class="content">			
+			<div class="body-text">登录豆瓣</div>
+			<div class="body-tips">登录注册表示同意<span class="blank"> 豆瓣使用协议、隐私政策</span></div>
+			<div class="input">
+				<input class="phone" type="text" placeholder="手机号/邮箱"/>
+				<input class="password" type="text" placeholder="密码"/>
+			</div>
+			<button class="enter">登录</button>
+			<div class="index"><a href="./index.html">立即注册</a></div>
+		</div>
+		
+		<script>
+			localStorage.setItem("token","res.data.token");  //在登录界面储存token
+			var Enter = $ (".enter");
+			Enter.click(function(){
+				var Tel = $(".phone").val();
+				var Pw = $(".password").val();
+				if(Tel!="" && Pw!=""){
+					alert("登录成功");
+					location.href = 'main.html' //跳转到其他页面
+				}else{
+					alert("请输入电话和密码！")
+				};
+				$.ajax({
+					url:"http://www.myshop.com/index/user/doLogin",
+					type:'POST',
+					dataType:'json',
+					data:{
+						'phone':Tel,
+						'password':Pw,
+					},
+					success:function(res){
+						console.log(res)
+					}
+				});
+			});
+			
+				
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
